@@ -143,6 +143,17 @@ export default function Footer() {
           </Link>
         </div>
       </div>
+      <div className="max-w-7xl mx-auto pt-4 text-center text-sm text-white">
+        Designed &amp; Developed By{" "}
+        <a
+          href="https://tech-daddy.in/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="underline hover:text-gray-300 transition-colors"
+        >
+          Tech Daddy Global Solutions
+        </a>
+      </div>
     </footer>
   );
 }
