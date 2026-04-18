@@ -1,5 +1,6 @@
 "use client";
 
+import { useRef } from "react";
 import { motion } from "framer-motion";
 import {
   ArrowRight,
@@ -31,8 +32,20 @@ const staggerContainer = {
 };
 
 export default function Home() {
+  const sliderRef = useRef<HTMLDivElement>(null);
+
+  const scrollSlider = (dir: "prev" | "next") => {
+    if (!sliderRef.current) return;
+    const card = sliderRef.current.querySelector("[data-card]") as HTMLElement;
+    const amount = card ? card.offsetWidth + 32 : 360;
+    sliderRef.current.scrollBy({
+      left: dir === "next" ? amount : -amount,
+      behavior: "smooth",
+    });
+  };
+
   return (
-    <div className="relative bg-[#f9f8f6] font-sans selection:bg-[#c85a32] selection:text-white">
+    <div className="relative bg-[#f9f8f6] font-sans selection:bg-[#c85a32] selection:text-white overflow-x-hidden">
       <main className="flex flex-col">
         <section className="relative overflow-hidden bg-[#1f1e1b] min-h-[calc(100vh-73px)] flex">
           {/* Right side image with diagonal clip — hidden on mobile */}
@@ -61,10 +74,6 @@ export default function Home() {
                 className="inline-flex items-center gap-2 border border-[#c85a32] px-3 py-1 mb-4"
               >
                 <span className="font-bold text-[#c85a32] text-xs uppercase tracking-widest">
-                  Est. 2025
-                </span>
-                <span className="w-1 h-1 bg-[#c85a32] rounded-full" />
-                <span className="font-bold text-[#c85a32] text-xs uppercase tracking-widest">
                   Rajura, Maharashtra
                 </span>
               </motion.div>
@@ -82,56 +91,38 @@ export default function Home() {
               </motion.h1>
               <motion.p
                 variants={fadeInUp}
-                className="font-[family-name:var(--font-crimson-pro)] text-white/80 text-xl lg:text-2xl mb-4"
-              >
-                For businesses that demand clarity, compliance, and confidence.
-              </motion.p>
-              <motion.p
-                variants={fadeInUp}
                 className="text-white/60 text-base mb-8 leading-relaxed"
               >
-                Accountrix Solutions, proudly partnering with SG &amp; Company,
-                delivers uncompromising financial expertise. We transform
-                complex numbers into clear pathways for your business growth.
+                Accountrix Solutions is a strategic brand partner of SG &amp;
+                Company. We deliver expert financial solutions—translating
+                complexity into clarity for sustainable business growth.
               </motion.p>
-              <motion.div
-                variants={fadeInUp}
-                className="flex flex-wrap items-center gap-4"
-              >
-                <a
-                  href="/contact"
-                  className="bg-[#c85a32] hover:bg-[#a64522] transition-colors text-white font-semibold text-sm uppercase px-8 py-4 tracking-wide"
-                >
-                  Get Free Consultation
-                </a>
-              </motion.div>
             </div>
           </motion.div>
         </section>
 
-        <section className="bg-[#1f1e1b] text-white px-6 lg:px-12 py-16">
+        <section className="bg-[#1f1e1b] text-white border-t border-white/10">
           <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
             variants={staggerContainer}
-            className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-12"
+            className="w-full px-6 lg:px-12 flex flex-col sm:flex-row sm:items-stretch divide-y sm:divide-y-0 sm:divide-x divide-white/10"
           >
             {[
-              { s: "100%", l: "Client Data Confidentiality", b: false },
-              { s: "GST+ITR", l: "Compliances Covered", b: true },
-              { s: "2025", l: "Trusted Since", b: true },
-              { s: "SG & Co.", l: "Strategic Brand Partner", b: true },
+              { s: "100%", l: "Client Data Confidentiality" },
+              { s: "2018", l: "Trusted Since" },
+              { s: "SG & Co.", l: "Strategic Brand Partner" },
             ].map((x, i) => (
               <motion.div
                 key={i}
                 variants={fadeInUp}
-                className={`flex flex-col ${x.b ? "md:border-l md:border-white/20 md:pl-12" : ""}`}
+                className="flex flex-col flex-1 py-10 px-10 lg:px-16"
               >
-                <span className="font-[family-name:var(--font-crimson-pro)] text-[#c85a32] text-4xl lg:text-5xl mb-2">
+                <span className="font-[family-name:var(--font-crimson-pro)] text-[#c85a32] text-4xl lg:text-5xl mb-1">
                   {x.s}
                 </span>
-                <span className="font-semibold text-gray-300 text-sm uppercase tracking-wider">
+                <span className="font-semibold text-white/50 text-xs uppercase tracking-widest">
                   {x.l}
                 </span>
               </motion.div>
@@ -170,24 +161,25 @@ export default function Home() {
                 variants={fadeInUp}
                 className="font-[family-name:var(--font-crimson-pro)] text-[#1f1e1b] text-4xl lg:text-5xl leading-tight mb-6"
               >
-                A Trusted Accounting Partner for Growing Businesses
+                Empowering Growth with Trusted Accounting &amp; Financial
+                Expertise
               </motion.h2>
               <motion.div
                 variants={fadeInUp}
                 className="space-y-6 text-[#5a5854] text-lg leading-relaxed mb-10"
               >
                 <p>
-                  At Accountrix Solutions, we believe that solid financial
-                  foundations are the bedrock of business success. Through our
-                  strategic partnership with SG & Company, we offer unparalleled
-                  expertise tailored to the unique regulatory landscape and
-                  market dynamics of Maharashtra and beyond.
+                  At Accountrix Solutions, we believe strong financial
+                  foundations are the cornerstone of lasting business success.
+                  In strategic partnership with SG &amp; Company, we deliver
+                  expert financial solutions tailored to evolving regulatory
+                  requirements and dynamic market environments.
                 </p>
                 <p>
-                  Our mission goes beyond basic bookkeeping. We aim to be your
-                  strategic advisors, ensuring compliance, optimizing tax
-                  structures, and providing the clarity needed to make confident
-                  business decisions.
+                  Beyond bookkeeping, SG &amp; Co. act as your strategic
+                  advisors—ensuring compliances, optimizing tax structures, and
+                  delivering clear financial insights that empower confident,
+                  informed decisions.
                 </p>
               </motion.div>
               <motion.blockquote
@@ -247,12 +239,52 @@ export default function Home() {
                 View All Services
               </motion.a>
             </motion.div>
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={staggerContainer}
-              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+            {/* Slider nav */}
+            <div className="flex items-center justify-end gap-3 mb-6">
+              <button
+                onClick={() => scrollSlider("prev")}
+                aria-label="Previous"
+                className="w-11 h-11 flex items-center justify-center border border-[#1f1e1b] hover:bg-[#1f1e1b] hover:text-white text-[#1f1e1b] transition-colors"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="m15 18-6-6 6-6" />
+                </svg>
+              </button>
+              <button
+                onClick={() => scrollSlider("next")}
+                aria-label="Next"
+                className="w-11 h-11 flex items-center justify-center border border-[#1f1e1b] hover:bg-[#1f1e1b] hover:text-white text-[#1f1e1b] transition-colors"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="m9 18 6-6-6-6" />
+                </svg>
+              </button>
+            </div>
+
+            {/* Slider track */}
+            <div
+              ref={sliderRef}
+              className="flex gap-8 overflow-x-auto scroll-smooth snap-x snap-mandatory no-scrollbar"
             >
               {[
                 {
@@ -287,9 +319,13 @@ export default function Home() {
                 },
               ].map((s, i) => (
                 <motion.div
+                  data-card
                   key={i}
-                  variants={fadeInUp}
-                  className="bg-white border border-[#e5e2db] p-6 md:p-10 hover:shadow-xl transition-shadow group"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: i * 0.08 }}
+                  className="bg-white border border-[#e5e2db] p-8 md:p-10 hover:shadow-xl transition-shadow group snap-start shrink-0 w-[85vw] sm:w-[42vw] lg:w-[calc(33.333%-22px)]"
                 >
                   <div className="w-14 h-14 bg-[#faf3f0] flex items-center justify-center text-[#c85a32] mb-8">
                     <s.icon className="w-7 h-7" />
@@ -307,6 +343,83 @@ export default function Home() {
                   </a>
                 </motion.div>
               ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Why Choose Us */}
+        <section className="bg-[#1f1e1b] px-6 lg:px-12 py-24 lg:py-32">
+          <div className="max-w-7xl mx-auto">
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={staggerContainer}
+              className="flex flex-col lg:flex-row gap-16 lg:gap-24"
+            >
+              {/* Left — Why Choose Us */}
+              <motion.div variants={fadeInUp} className="lg:w-1/2">
+                <span className="block font-bold text-[#c85a32] text-sm uppercase tracking-widest mb-4">
+                  Why Choose Us
+                </span>
+                <h2 className="font-[family-name:var(--font-crimson-pro)] text-white text-4xl lg:text-5xl leading-tight mb-10">
+                  What Sets Us Apart
+                </h2>
+                <ul className="space-y-5">
+                  {[
+                    "Startup agility + domain expertise",
+                    "Tech-enabled automation for accuracy & speed",
+                    "Transparent pricing for mid-segment businesses",
+                    "End-to-end coverage: bookkeeping → compliance → reporting",
+                    "Trusted partnership model (Accountrix + SG & Co.)",
+                  ].map((item, i) => (
+                    <motion.li
+                      key={i}
+                      variants={fadeInUp}
+                      className="flex items-start gap-4 text-white/80 text-lg leading-relaxed"
+                    >
+                      <span className="mt-1.5 w-2 h-2 rounded-full bg-[#c85a32] shrink-0" />
+                      {item}
+                    </motion.li>
+                  ))}
+                </ul>
+              </motion.div>
+
+              {/* Right — Service split table */}
+              <motion.div variants={fadeInUp} className="lg:w-1/2">
+                <span className="block font-bold text-[#c85a32] text-sm uppercase tracking-widest mb-4 lg:mt-16">
+                  Our Service Split
+                </span>
+                <div className="border border-white/20 overflow-hidden">
+                  {/* Header */}
+                  <div className="grid grid-cols-2 border-b border-white/20">
+                    <div className="px-6 py-4 font-bold text-white text-sm uppercase tracking-wider border-r border-white/20">
+                      Accountrix Solutions
+                    </div>
+                    <div className="px-6 py-4 font-bold text-white text-sm uppercase tracking-wider">
+                      SG &amp; Co.
+                    </div>
+                  </div>
+                  {/* Rows */}
+                  {[
+                    ["Bookkeeping & Accountancy", "GST Compliance & Filings"],
+                    ["Payroll Management", "Income Tax Filings"],
+                    ["MIS & Financial Reportings", "Regulatory Compliances"],
+                  ].map(([left, right], i) => (
+                    <div
+                      key={i}
+                      className={`grid grid-cols-2 ${i < 2 ? "border-b border-white/20" : ""}`}
+                    >
+                      <div className="px-6 py-5 text-white/70 text-sm border-r border-white/20">
+                        {left}
+                      </div>
+                      <div className="px-6 py-5 text-white/70 text-sm">
+                        {right}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </motion.div>
             </motion.div>
           </div>
         </section>
@@ -324,60 +437,22 @@ export default function Home() {
                 variants={fadeInUp}
                 className="font-[family-name:var(--font-crimson-pro)] text-[#1f1e1b] text-4xl lg:text-5xl leading-tight mb-4"
               >
-                Industries We Empower
+                Industries We Serve
               </motion.h2>
               <motion.p
                 variants={fadeInUp}
-                className="text-[#5a5854] text-lg leading-relaxed"
+                className="text-[#5a5854] text-lg leading-relaxed mb-2"
               >
                 Tailored financial solutions designed around the specific
                 operational realities of distinct sectors.
               </motion.p>
-            </motion.div>
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={staggerContainer}
-              className="grid grid-cols-1 md:grid-cols-3 gap-12"
-            >
-              {[
-                {
-                  t: "Consumer & Retail",
-                  d: "Managing high-volume transactions, inventory accounting, and multi-location tax compliances.",
-                  i: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=800&auto=format&fit=crop",
-                },
-                {
-                  t: "Wholesalers & Distributors",
-                  d: "Optimizing supply chain finance, logistics cost tracking, and complex state-level taxation.",
-                  i: "https://images.unsplash.com/photo-1586528116311-ad8ed7c15438?q=80&w=800&auto=format&fit=crop",
-                },
-                {
-                  t: "Manufacturing & Service",
-                  d: "Cost accounting, capital expenditure planning, and holistic service-sector financial reporting.",
-                  i: "https://images.unsplash.com/photo-1565106430482-8f6e1f34b225?q=80&w=800&auto=format&fit=crop",
-                },
-              ].map((x, i) => (
-                <motion.div
-                  key={i}
-                  variants={fadeInUp}
-                  className="flex flex-col text-center group"
-                >
-                  <div className="bg-[#eae8e2] aspect-[4/3] w-full mb-6 overflow-hidden relative">
-                    <Image
-                      src={x.i}
-                      alt={x.t}
-                      layout="fill"
-                      objectFit="cover"
-                      className="group-hover:scale-105 transition-transform duration-700 opacity-90"
-                    />
-                  </div>
-                  <h3 className="font-[family-name:var(--font-crimson-pro)] text-[#1f1e1b] text-2xl mb-3">
-                    {x.t}
-                  </h3>
-                  <p className="text-[#5a5854] leading-relaxed">{x.d}</p>
-                </motion.div>
-              ))}
+              <motion.p
+                variants={fadeInUp}
+                className="text-[#5a5854] text-lg leading-relaxed"
+              >
+                Helping SMEs, Startups, Retail, Manufacturing, and IT companies
+                streamline their finances.
+              </motion.p>
             </motion.div>
           </div>
         </section>
@@ -401,15 +476,15 @@ export default function Home() {
                 className="text-[#5a5854] text-lg leading-relaxed mb-12 max-w-lg"
               >
                 Whether you need a full-scale audit, tax planning, or simple
-                bookkeeping, we are here to support your growth. Reach out for a
-                free consultation.
+                bookkeeping, we are here to support your growth. Book A Free
+                Consultation Today.
               </motion.p>
               <div className="space-y-8">
                 <motion.div variants={fadeInUp} className="flex gap-4">
                   <Mail className="w-6 h-6 text-[#c85a32] shrink-0 mt-1" />
                   <div>
                     <p className="font-bold text-[#5a5854] text-sm uppercase tracking-widest mb-1">
-                      Email Us
+                      Email
                     </p>
                     <a
                       href="mailto:info@accountrixsolutions.in"
@@ -423,7 +498,7 @@ export default function Home() {
                   <Phone className="w-6 h-6 text-[#c85a32] shrink-0 mt-1" />
                   <div>
                     <p className="font-bold text-[#5a5854] text-sm uppercase tracking-widest mb-1">
-                      Call Us
+                      Call
                     </p>
                     <p className="font-[family-name:var(--font-crimson-pro)] text-[#1f1e1b] text-2xl">
                       +91 7276535406
@@ -434,12 +509,25 @@ export default function Home() {
                   <MapPin className="w-6 h-6 text-[#c85a32] shrink-0 mt-1" />
                   <div>
                     <p className="font-bold text-[#5a5854] text-sm uppercase tracking-widest mb-1">
-                      Visit Us
+                      Registered Address
                     </p>
                     <p className="font-[family-name:var(--font-crimson-pro)] text-[#1f1e1b] text-xl leading-relaxed">
-                      Gadchandur Road, Rajura,
+                      <span className="font-semibold text-base">
+                        Office Address:
+                      </span>
                       <br />
-                      Chandrapur, Maharashtra
+                      404, Shree Rama Apartments, Narayanguda
+                      <br />
+                      Hyderabad, Telangana 500027
+                    </p>
+                    <p className="font-[family-name:var(--font-crimson-pro)] text-[#1f1e1b] text-xl leading-relaxed mt-4">
+                      <span className="font-semibold text-base">
+                        Branch Office:
+                      </span>
+                      <br />
+                      Gadchandur Road, Rajura
+                      <br />
+                      Dist: Chandrapur, Maharashtra 442905
                     </p>
                   </div>
                 </motion.div>

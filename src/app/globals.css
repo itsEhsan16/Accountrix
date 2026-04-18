@@ -23,3 +23,35 @@ body {
   background: #f9f8f6;
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* Custom page scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f9f8f6;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c85a32;
+  border-radius: 0;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #a64522;
+}
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #c85a32 #f9f8f6;
+}
+
+@utility no-scrollbar {
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

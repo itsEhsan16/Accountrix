@@ -124,7 +124,7 @@ export default function Header() {
               href="/news"
               className="font-medium text-[#5a5854] hover:text-[#c85a32] transition-colors"
             >
-              News & Blogs
+              Insights
             </Link>
             <Link
               href="/contact"
@@ -291,7 +291,7 @@ export default function Header() {
               onClick={closeMobile}
               className="block py-3 font-semibold text-[#1f1e1b] hover:text-[#c85a32] transition-colors border-b border-[#e5e2db]"
             >
-              News & Blogs
+              Insights
             </Link>
             <Link
               href="/contact"

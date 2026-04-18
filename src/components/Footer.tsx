@@ -86,7 +86,7 @@ export default function Footer() {
                 href="/#services"
                 className="hover:text-white transition-colors"
               >
-                GST Filings
+                GST Filings & Compliance
               </Link>
             </li>
             <li>
@@ -105,6 +105,22 @@ export default function Footer() {
                 Payroll Management
               </Link>
             </li>
+            <li>
+              <Link
+                href="/#services"
+                className="hover:text-white transition-colors"
+              >
+                Direct & Indirect Taxes
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/#services"
+                className="hover:text-white transition-colors"
+              >
+                Business Advisory
+              </Link>
+            </li>
           </ul>
         </div>
         <div className="lg:col-span-3 space-y-6">
@@ -121,11 +137,7 @@ export default function Footer() {
               </a>
             </li>
             <li>+91 7276535406</li>
-            <li className="leading-relaxed">
-              Gadchandur Road, Rajura,
-              <br />
-              Chandrapur, Maharashtra
-            </li>
+            <li className="leading-relaxed">Hyderabad, India</li>
           </ul>
         </div>
       </div>
