@@ -34,10 +34,10 @@ export default function Home() {
   return (
     <div className="relative bg-[#f9f8f6] font-sans selection:bg-[#c85a32] selection:text-white">
       <main className="flex flex-col">
-        <section className="relative overflow-hidden bg-[#1f1e1b] h-[calc(100vh-73px)] flex">
-          {/* Right side image with diagonal clip */}
+        <section className="relative overflow-hidden bg-[#1f1e1b] min-h-[calc(100vh-73px)] flex">
+          {/* Right side image with diagonal clip — hidden on mobile */}
           <div
-            className="absolute inset-y-0 right-0 w-[52%] pointer-events-none"
+            className="hidden lg:block absolute inset-y-0 right-0 w-[52%] pointer-events-none"
             style={{ clipPath: "polygon(18% 0, 100% 0, 100% 100%, 0% 100%)" }}
           >
             <img
@@ -53,9 +53,9 @@ export default function Home() {
             whileInView="visible"
             viewport={{ once: true }}
             variants={staggerContainer}
-            className="relative z-10 w-full px-6 lg:px-20 flex items-center py-10"
+            className="relative z-10 w-full px-6 lg:px-20 flex items-center py-16 lg:py-10"
           >
-            <div className="w-[52%]">
+            <div className="w-full lg:w-[52%]">
               <motion.div
                 variants={fadeInUp}
                 className="inline-flex items-center gap-2 border border-[#c85a32] px-3 py-1 mb-4"
@@ -70,7 +70,7 @@ export default function Home() {
               </motion.div>
               <motion.h1
                 variants={fadeInUp}
-                className="font-[family-name:var(--font-crimson-pro)] text-white text-5xl lg:text-6xl xl:text-[5.25rem] leading-[1.05] mb-5 tracking-tight"
+                className="font-[family-name:var(--font-crimson-pro)] text-white text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-[5.25rem] leading-[1.05] mb-5 tracking-tight"
               >
                 Smart
                 <br />
@@ -115,7 +115,7 @@ export default function Home() {
             whileInView="visible"
             viewport={{ once: true }}
             variants={staggerContainer}
-            className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-12"
+            className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-12"
           >
             {[
               { s: "100%", l: "Client Data Confidentiality", b: false },
@@ -145,9 +145,9 @@ export default function Home() {
               initial={{ opacity: 0, x: -40 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              className="w-full lg:w-1/2 relative pb-10 pr-10"
+              className="w-full lg:w-1/2 relative pb-6 pr-6 md:pb-10 md:pr-10"
             >
-              <div className="absolute bottom-0 right-0 w-32 h-32 bg-[#c85a32]" />
+              <div className="absolute bottom-0 right-0 w-20 h-20 md:w-32 md:h-32 bg-[#c85a32]" />
               <div className="relative aspect-[4/5] bg-gray-200 z-10 overflow-hidden">
                 <Image
                   src="https://images.unsplash.com/photo-1556761175-4b46a572b786"
@@ -289,7 +289,7 @@ export default function Home() {
                 <motion.div
                   key={i}
                   variants={fadeInUp}
-                  className="bg-white border border-[#e5e2db] p-10 hover:shadow-xl transition-shadow group"
+                  className="bg-white border border-[#e5e2db] p-6 md:p-10 hover:shadow-xl transition-shadow group"
                 >
                   <div className="w-14 h-14 bg-[#faf3f0] flex items-center justify-center text-[#c85a32] mb-8">
                     <s.icon className="w-7 h-7" />
@@ -413,7 +413,7 @@ export default function Home() {
                     </p>
                     <a
                       href="mailto:info@accountrixsolutions.in"
-                      className="font-[family-name:var(--font-crimson-pro)] text-[#1f1e1b] text-2xl hover:text-[#c85a32] transition-colors"
+                      className="font-[family-name:var(--font-crimson-pro)] text-[#1f1e1b] text-xl lg:text-2xl hover:text-[#c85a32] transition-colors break-all"
                     >
                       info@accountrixsolutions.in
                     </a>

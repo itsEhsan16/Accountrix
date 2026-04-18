@@ -161,7 +161,7 @@ export default function ServicesContent() {
 
           <motion.h1
             variants={fadeInUp}
-            className="font-(family-name:--font-crimson-pro) text-5xl md:text-6xl text-white mb-6 leading-tight"
+            className="font-(family-name:--font-crimson-pro) text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white mb-6 leading-tight"
           >
             Comprehensive Financial{" "}
             <span className="italic font-medium text-[#c85a32]">
@@ -204,7 +204,7 @@ export default function ServicesContent() {
           whileInView="visible"
           viewport={{ once: true }}
           variants={staggerContainer}
-          className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-12"
+          className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-12"
         >
           {[
             { s: "6", l: "Core Services", b: false },
@@ -292,8 +292,8 @@ export default function ServicesContent() {
               >
                 {/* Visual */}
                 <motion.div variants={fadeInUp} className="w-full md:w-1/2">
-                  <div className="relative pr-8 pb-8">
-                    <div className="absolute bottom-0 right-0 w-20 h-20 bg-[#c85a32]" />
+                  <div className="relative pr-6 pb-6 md:pr-8 md:pb-8">
+                    <div className="absolute bottom-0 right-0 w-16 h-16 md:w-20 md:h-20 bg-[#c85a32]" />
                     <div className="relative aspect-4/3 w-full z-10 overflow-hidden shadow-sm">
                       <Image
                         src={service.image}

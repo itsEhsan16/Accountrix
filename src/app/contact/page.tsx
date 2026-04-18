@@ -70,21 +70,29 @@ const socialIcons: Record<string, React.ReactNode> = {
   ),
 };
 
-function FaqItem({ question, answer }: { question: string; answer: string }) {
-  const [open, setOpen] = useState(false);
-
+function FaqItem({
+  question,
+  answer,
+  isOpen,
+  onToggle,
+}: {
+  question: string;
+  answer: string;
+  isOpen: boolean;
+  onToggle: () => void;
+}) {
   return (
     <div className="border-b border-[#e5e2db]">
       <button
-        onClick={() => setOpen(!open)}
+        onClick={onToggle}
         className="w-full flex items-center justify-between py-5 text-left gap-4 group"
-        aria-expanded={open}
+        aria-expanded={isOpen}
       >
         <span className="font-[family-name:var(--font-crimson-pro)] text-[#1f1e1b] text-lg lg:text-xl group-hover:text-[#c85a32] transition-colors">
           {question}
         </span>
         <motion.div
-          animate={{ rotate: open ? 180 : 0 }}
+          animate={{ rotate: isOpen ? 180 : 0 }}
           transition={{ duration: 0.2 }}
           className="shrink-0 text-[#c85a32]"
         >
@@ -92,7 +100,7 @@ function FaqItem({ question, answer }: { question: string; answer: string }) {
         </motion.div>
       </button>
       <AnimatePresence initial={false}>
-        {open && (
+        {isOpen && (
           <motion.div
             key="answer"
             initial={{ height: 0, opacity: 0 }}
@@ -115,6 +123,7 @@ export default function ContactPage() {
   const [status, setStatus] = useState<
     "idle" | "sending" | "success" | "error"
   >("idle");
+  const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
 
   const scrollToForm = () => {
     formSectionRef.current?.scrollIntoView({
@@ -178,7 +187,7 @@ export default function ContactPage() {
           </motion.div>
           <motion.h1
             variants={fadeInUp}
-            className="font-[family-name:var(--font-crimson-pro)] text-5xl lg:text-7xl mb-6"
+            className="font-[family-name:var(--font-crimson-pro)] text-3xl sm:text-4xl lg:text-5xl xl:text-7xl mb-6"
           >
             Let&apos;s Start a{" "}
             <span className="italic font-medium text-[#c85a32]">
@@ -391,6 +400,7 @@ export default function ContactPage() {
                     type="tel"
                     name="user_phone"
                     placeholder="Phone Number"
+                    required
                     className="w-full bg-transparent border-b border-[#5a5854] py-3 text-[#1f1e1b] placeholder:text-[#5a5854] focus:outline-none focus:border-[#c85a32] transition-colors"
                   />
                 </div>
@@ -398,6 +408,7 @@ export default function ContactPage() {
                   <select
                     name="service"
                     defaultValue=""
+                    required
                     className="w-full bg-transparent border-b border-[#5a5854] py-3 text-[#1f1e1b] appearance-none focus:outline-none focus:border-[#c85a32] transition-colors"
                   >
                     <option value="" disabled>
@@ -545,9 +556,16 @@ export default function ContactPage() {
             variants={staggerContainer}
           >
             <div className="border-t border-[#e5e2db]">
-              {faqItems.map((item) => (
+              {faqItems.map((item, index) => (
                 <motion.div key={item.question} variants={fadeInUp}>
-                  <FaqItem question={item.question} answer={item.answer} />
+                  <FaqItem
+                    question={item.question}
+                    answer={item.answer}
+                    isOpen={openFaqIndex === index}
+                    onToggle={() =>
+                      setOpenFaqIndex(openFaqIndex === index ? null : index)
+                    }
+                  />
                 </motion.div>
               ))}
             </div>

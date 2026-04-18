@@ -41,7 +41,7 @@ export default function About() {
         >
           <motion.h1
             variants={fadeInUp}
-            className="font-[family-name:var(--font-crimson-pro)] text-5xl lg:text-7xl mb-6"
+            className="font-[family-name:var(--font-crimson-pro)] text-3xl sm:text-4xl lg:text-5xl xl:text-7xl mb-6"
           >
             Your Trusted Strategic Advisors.
           </motion.h1>
@@ -205,7 +205,7 @@ export default function About() {
               <motion.div
                 key={idx}
                 variants={fadeInUp}
-                className="bg-white border border-[#e5e2db] p-10 hover:shadow-xl transition-all"
+                className="bg-white border border-[#e5e2db] p-6 md:p-10 hover:shadow-xl transition-all"
               >
                 <div className="w-14 h-14 bg-[#faf3f0] flex items-center justify-center text-[#c85a32] mb-6">
                   <Value.icon className="w-7 h-7" />

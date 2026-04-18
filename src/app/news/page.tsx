@@ -108,7 +108,7 @@ export default function NewsPage() {
   return (
     <main className="flex-1">
       {/* SECTION 1: Hero Banner */}
-      <section className="relative pt-40 lg:pt-48 pb-20 lg:pb-28 overflow-hidden bg-[#1f1e1b] text-white">
+      <section className="relative pt-24 lg:pt-48 pb-20 lg:pb-28 overflow-hidden bg-[#1f1e1b] text-white">
         <div
           className="absolute inset-0 opacity-10 pointer-events-none"
           style={{
