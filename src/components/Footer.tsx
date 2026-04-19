@@ -7,13 +7,16 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8 mb-20">
         <div className="lg:col-span-4 space-y-6 lg:pr-8">
           <Link href="/" className="flex items-center gap-2 w-fit">
-            <Image
-              src="/AccountrixLogo1 1 [Vectorized].svg"
-              alt="Accountrix Logo"
-              width={120}
-              height={40}
-              className="h-10 w-auto brightness-0 invert"
-            />
+            <div className="relative">
+              <div className="absolute inset-0 blur-xl bg-white/30 rounded-full scale-110 pointer-events-none" />
+              <Image
+                src="/AccountrixLogo1 1 [Vectorized].svg"
+                alt="Accountrix Logo"
+                width={120}
+                height={40}
+                className="relative h-10 w-auto"
+              />
+            </div>
           </Link>
           <p className="text-gray-400 leading-relaxed">
             Smart Accounting, Simple Solutions. We provide clarity, compliance,

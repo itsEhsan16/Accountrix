@@ -69,13 +69,6 @@ export default function Home() {
             className="relative z-10 w-full px-6 lg:px-20 flex items-center py-16 lg:py-10"
           >
             <div className="w-full lg:w-[52%]">
-              <motion.p
-                variants={fadeInUp}
-                className="font-bold text-[#c85a32] text-xs uppercase tracking-widest mb-3"
-              >
-                End-to-End Accounting &amp; Compliance service for Growing
-                Businesses
-              </motion.p>
               <motion.h1
                 variants={fadeInUp}
                 className="font-[family-name:var(--font-crimson-pro)] text-white text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-[5.25rem] leading-[1.05] mb-5 tracking-tight"
@@ -88,6 +81,13 @@ export default function Home() {
                   Simple Solutions.
                 </span>
               </motion.h1>
+              <motion.p
+                variants={fadeInUp}
+                className="font-bold text-[#c85a32] text-xs uppercase tracking-widest mb-3"
+              >
+                End-to-End Accounting &amp; Compliance service for Growing
+                Businesses
+              </motion.p>
               <motion.p
                 variants={fadeInUp}
                 className="text-white/60 text-base mb-8 leading-relaxed"
