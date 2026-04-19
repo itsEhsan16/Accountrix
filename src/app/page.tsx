@@ -470,7 +470,7 @@ export default function Home() {
                   label: "Wholesalers & Distributors",
                 },
                 {
-                  img: "https://images.unsplash.com/photo-1565793979168-2c1a5e26a4dc?w=800&auto=format&fit=crop&q=80",
+                  img: "/manf-services.webp",
                   label: "Manufacturing & Service",
                 },
               ].map((item, i) => (
