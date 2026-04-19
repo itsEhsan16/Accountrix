@@ -1,20 +1,49 @@
 import Link from "next/link";
 import Image from "next/image";
 
+const logoShineStyle = `
+  @keyframes logo-shine {
+    0%   { transform: translateX(-120%) skewX(-20deg); }
+    100% { transform: translateX(220%) skewX(-20deg); }
+  }
+  .logo-badge-shine::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 45%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.55), transparent);
+    transform: translateX(-120%) skewX(-20deg);
+    pointer-events: none;
+  }
+  .logo-badge:hover .logo-badge-shine::after {
+    animation: logo-shine 0.55s ease forwards;
+  }
+`;
+
 export default function Footer() {
   return (
+    <>
+      <style dangerouslySetInnerHTML={{ __html: logoShineStyle }} />
     <footer className="bg-[#141311] text-white pt-20 pb-10 px-6 lg:px-12 mt-auto">
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8 mb-20">
         <div className="lg:col-span-4 space-y-6 lg:pr-8">
-          <Link href="/" className="flex items-center gap-2 w-fit">
-            <div className="relative">
-              <div className="absolute inset-0 blur-xl bg-white/30 rounded-full scale-110 pointer-events-none" />
+          <Link href="/" className="logo-badge flex items-center gap-2 w-fit">
+            {/* Slanted white badge with sliding shine on hover */}
+            <div
+              className="logo-badge-shine relative inline-flex items-center justify-center overflow-hidden px-5 py-2"
+              style={{
+                clipPath: "polygon(7% 0%, 100% 0%, 93% 100%, 0% 100%)",
+                background: "#ffffff",
+                boxShadow: "0 4px 20px rgba(0,0,0,0.35), 0 1px 0 rgba(255,255,255,0.8) inset",
+              }}
+            >
               <Image
                 src="/AccountrixLogo1 1 [Vectorized].svg"
                 alt="Accountrix Logo"
-                width={120}
-                height={40}
-                className="relative h-10 w-auto"
+                width={130}
+                height={44}
+                className="relative h-11 w-auto"
               />
             </div>
           </Link>
@@ -158,5 +187,6 @@ export default function Footer() {
         </a>
       </div>
     </footer>
+    </>
   );
 }

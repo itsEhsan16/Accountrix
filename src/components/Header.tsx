@@ -60,7 +60,7 @@ export default function Header() {
             onClick={closeMobile}
           >
             <Image
-              src="/AccountrixLogo1 1 [Vectorized].svg"
+              src="/short-logo.png"
               alt="Accountrix Logo"
               width={120}
               height={40}
