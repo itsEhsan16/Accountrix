@@ -39,7 +39,7 @@ export default function Footer() {
               }}
             >
               <Image
-                src="/AccountrixLogo1 1 [Vectorized].svg"
+                src="/footer-logo.png"
                 alt="Accountrix Logo"
                 width={130}
                 height={44}
