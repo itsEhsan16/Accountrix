@@ -8,26 +8,17 @@ export default function Footer() {
         <div className="lg:col-span-4 space-y-6 lg:pr-8">
           <Link href="/" className="flex items-center gap-2 w-fit">
             <Image
-              src="/AccountrixLogo1.png"
+              src="/AccountrixLogo1 1 [Vectorized].svg"
               alt="Accountrix Logo"
               width={120}
               height={40}
-              className="h-10 w-auto"
+              className="h-10 w-auto brightness-0 invert"
             />
           </Link>
           <p className="text-gray-400 leading-relaxed">
             Smart Accounting, Simple Solutions. We provide clarity, compliance,
             and confidence for growing businesses.
           </p>
-          <div className="inline-flex items-center gap-2 border border-gray-700 px-3 py-1">
-            <span className="font-bold text-gray-400 text-xs uppercase tracking-widest">
-              Est. 2025
-            </span>
-            <span className="w-1 h-1 bg-[#c85a32] rounded-full" />
-            <span className="font-bold text-gray-400 text-xs uppercase tracking-widest">
-              Partner of SG & Co.
-            </span>
-          </div>
         </div>
         <div className="lg:col-span-2 space-y-6">
           <h4 className="font-[family-name:var(--font-crimson-pro)] text-xl">
@@ -51,11 +42,8 @@ export default function Footer() {
               </Link>
             </li>
             <li>
-              <Link
-                href="/#news"
-                className="hover:text-white transition-colors"
-              >
-                News & Blogs
+              <Link href="/news" className="hover:text-white transition-colors">
+                Insights
               </Link>
             </li>
             <li>

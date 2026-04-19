@@ -47,7 +47,7 @@ export default function Home() {
   return (
     <div className="relative bg-[#f9f8f6] font-sans selection:bg-[#c85a32] selection:text-white overflow-x-hidden">
       <main className="flex flex-col">
-        <section className="relative overflow-hidden bg-[#1f1e1b] min-h-[calc(100vh-73px)] flex">
+        <section className="relative overflow-hidden bg-[#1f1e1b] min-h-[calc(100vh-73px)] flex font-[family-name:var(--font-public-sans)]">
           {/* Right side image with diagonal clip — hidden on mobile */}
           <div
             className="hidden lg:block absolute inset-y-0 right-0 w-[52%] pointer-events-none"
@@ -69,14 +69,13 @@ export default function Home() {
             className="relative z-10 w-full px-6 lg:px-20 flex items-center py-16 lg:py-10"
           >
             <div className="w-full lg:w-[52%]">
-              <motion.div
+              <motion.p
                 variants={fadeInUp}
-                className="inline-flex items-center gap-2 border border-[#c85a32] px-3 py-1 mb-4"
+                className="font-bold text-[#c85a32] text-xs uppercase tracking-widest mb-3"
               >
-                <span className="font-bold text-[#c85a32] text-xs uppercase tracking-widest">
-                  Rajura, Maharashtra
-                </span>
-              </motion.div>
+                End-to-End Accounting &amp; Compliance service for Growing
+                Businesses
+              </motion.p>
               <motion.h1
                 variants={fadeInUp}
                 className="font-[family-name:var(--font-crimson-pro)] text-white text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-[5.25rem] leading-[1.05] mb-5 tracking-tight"
@@ -101,7 +100,7 @@ export default function Home() {
           </motion.div>
         </section>
 
-        <section className="bg-[#1f1e1b] text-white border-t border-white/10">
+        <section className="bg-[#1f1e1b] text-white border-t border-white/10 font-[family-name:var(--font-public-sans)]">
           <motion.div
             initial="hidden"
             whileInView="visible"
@@ -454,6 +453,41 @@ export default function Home() {
                 streamline their finances.
               </motion.p>
             </motion.div>
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={staggerContainer}
+              className="grid grid-cols-1 md:grid-cols-3 gap-8"
+            >
+              {[
+                {
+                  img: "https://images.unsplash.com/photo-1567103472667-6898f3a79cf2?w=800&auto=format&fit=crop&q=80",
+                  label: "Consumer & Retail",
+                },
+                {
+                  img: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800&auto=format&fit=crop&q=80",
+                  label: "Wholesalers & Distributors",
+                },
+                {
+                  img: "https://images.unsplash.com/photo-1565793979168-2c1a5e26a4dc?w=800&auto=format&fit=crop&q=80",
+                  label: "Manufacturing & Service",
+                },
+              ].map((item, i) => (
+                <motion.div key={i} variants={fadeInUp} className="group">
+                  <div className="overflow-hidden aspect-[4/3] bg-gray-100 mb-4">
+                    <img
+                      src={item.img}
+                      alt={item.label}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                  </div>
+                  <h3 className="font-[family-name:var(--font-crimson-pro)] text-[#1f1e1b] text-xl text-center">
+                    {item.label}
+                  </h3>
+                </motion.div>
+              ))}
+            </motion.div>
           </div>
         </section>
 
@@ -470,14 +504,17 @@ export default function Home() {
                 className="font-[family-name:var(--font-crimson-pro)] text-[#1f1e1b] text-4xl lg:text-5xl leading-tight mb-6"
               >
                 Ready to Simplify Your Accounting?
+                <br />
+                <span className="italic text-[#c85a32] text-3xl lg:text-4xl">
+                  &ldquo;Book A Free Consultation Today.&rdquo;
+                </span>
               </motion.h2>
               <motion.p
                 variants={fadeInUp}
                 className="text-[#5a5854] text-lg leading-relaxed mb-12 max-w-lg"
               >
                 Whether you need a full-scale audit, tax planning, or simple
-                bookkeeping, we are here to support your growth. Book A Free
-                Consultation Today.
+                bookkeeping, we are here to support your growth.
               </motion.p>
               <div className="space-y-8">
                 <motion.div variants={fadeInUp} className="flex gap-4">
