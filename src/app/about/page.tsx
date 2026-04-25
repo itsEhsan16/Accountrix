@@ -54,7 +54,7 @@ export default function About() {
           </motion.p>
           <motion.div variants={fadeInUp}>
             <Link
-              href="/#contact"
+              href="/contact"
               className="inline-flex bg-[#c85a32] hover:bg-[#a64522] transition-colors text-white font-semibold text-sm uppercase px-8 py-4 tracking-wide"
             >
               Get Free Consultation
@@ -278,7 +278,7 @@ export default function About() {
                     alt={member.name}
                     layout="fill"
                     objectFit="cover"
-                    className="grayscale group-hover:grayscale-0 transition-all duration-500"
+                    className="transition-all duration-500"
                   />
                 </div>
                 <h3 className="font-[family-name:var(--font-crimson-pro)] text-[#1f1e1b] text-2xl mb-1">
@@ -325,7 +325,7 @@ export default function About() {
           </motion.p>
           <motion.div variants={fadeInUp}>
             <Link
-              href="/#contact"
+              href="/contact"
               className="inline-block bg-[#1f1e1b] hover:bg-[#141311] transition-colors text-white font-semibold text-sm uppercase px-10 py-5 tracking-wide"
             >
               Contact Us Today

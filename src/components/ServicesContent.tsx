@@ -182,7 +182,7 @@ export default function ServicesContent() {
             className="flex flex-wrap justify-center items-center gap-4"
           >
             <Link
-              href="/#contact"
+              href="/contact"
               className="bg-[#c85a32] hover:bg-[#a64522] transition-colors text-white font-semibold uppercase tracking-wider px-8 py-4 text-sm"
             >
               Schedule a Consultation
@@ -204,11 +204,10 @@ export default function ServicesContent() {
           whileInView="visible"
           viewport={{ once: true }}
           variants={staggerContainer}
-          className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-12"
+          className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-3 gap-6 md:gap-12"
         >
           {[
             { s: "6", l: "Core Services", b: false },
-            { s: "GST+ITR", l: "Tax Coverage", b: true },
             { s: "100%", l: "Compliance Rate", b: true },
             { s: "SG & Co.", l: "Strategic Partner", b: true },
           ].map((x, i) => (
@@ -299,7 +298,7 @@ export default function ServicesContent() {
                         src={service.image}
                         alt={service.title}
                         fill
-                        className="object-cover grayscale hover:grayscale-0 transition-all duration-500"
+                        className="object-cover transition-all duration-500"
                       />
                     </div>
                   </div>
@@ -423,7 +422,7 @@ export default function ServicesContent() {
             </motion.div>
             <motion.div variants={fadeInUp}>
               <Link
-                href="/#contact"
+                href="/contact"
                 className="inline-block bg-[#c85a32] hover:bg-[#a64522] transition-colors text-white font-semibold uppercase tracking-wider px-8 py-4 text-sm"
               >
                 Contact Us Today

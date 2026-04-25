@@ -1,11 +1,12 @@
 "use client";
 
-import { useRef } from "react";
-import { motion } from "framer-motion";
+import { useRef, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   ArrowRight,
   Play,
   CheckCircle2,
+  AlertCircle,
   ChevronRight,
   Phone,
   Mail,
@@ -15,6 +16,7 @@ import {
   BarChart2,
   Users,
   Info,
+  Send,
 } from "lucide-react";
 import Image from "next/image";
 
@@ -31,8 +33,42 @@ const staggerContainer = {
   },
 };
 
+const emptyForm = { name: "", email: "", phone: "", service: "", message: "" };
+
 export default function Home() {
   const sliderRef = useRef<HTMLDivElement>(null);
+  const [status, setStatus] = useState<
+    "idle" | "sending" | "success" | "error"
+  >("idle");
+  const [formData, setFormData] = useState(emptyForm);
+
+  const handleChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >,
+  ) => {
+    setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setStatus("sending");
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+      if (res.ok) {
+        setStatus("success");
+        setFormData(emptyForm);
+      } else {
+        setStatus("error");
+      }
+    } catch {
+      setStatus("error");
+    }
+  };
 
   const scrollSlider = (dir: "prev" | "next") => {
     if (!sliderRef.current) return;
@@ -145,7 +181,7 @@ export default function Home() {
                   alt="Team"
                   layout="fill"
                   objectFit="cover"
-                  className="opacity-90 grayscale hover:grayscale-0 transition-all duration-500"
+                  className="opacity-90 transition-all duration-500"
                 />
               </div>
             </motion.div>
@@ -192,7 +228,7 @@ export default function Home() {
               </motion.blockquote>
               <motion.a
                 variants={fadeInUp}
-                href="#"
+                href="/about"
                 className="inline-flex items-center gap-3 border-b-2 border-transparent hover:border-black pb-1 group transition-all"
               >
                 <span className="font-bold text-[#1f1e1b] text-sm uppercase tracking-widest">
@@ -232,7 +268,7 @@ export default function Home() {
               </div>
               <motion.a
                 variants={fadeInUp}
-                href="#"
+                href="/services"
                 className="shrink-0 border border-[#1f1e1b] hover:bg-[#1f1e1b] transition-colors hover:text-white text-[#1f1e1b] font-semibold text-sm uppercase px-8 py-4 tracking-wide"
               >
                 View All Services
@@ -577,32 +613,52 @@ export default function Home() {
               transition={{ delay: 0.2, duration: 0.6 }}
               className="bg-[#f9f8f6] border border-[#e5e2db] p-8 md:p-12"
             >
-              <form className="space-y-6">
+              <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
                   <input
                     type="text"
+                    name="name"
                     placeholder="Full Name"
+                    required
+                    value={formData.name}
+                    onChange={handleChange}
                     className="w-full bg-transparent border-b border-[#5a5854] py-3 text-[#5a5854] placeholder:text-[#5a5854] focus:outline-none focus:border-[#c85a32] transition-colors"
                   />
                 </div>
                 <div>
                   <input
                     type="email"
+                    name="email"
                     placeholder="Email Address"
+                    required
+                    value={formData.email}
+                    onChange={handleChange}
                     className="w-full bg-transparent border-b border-[#5a5854] py-3 text-[#5a5854] placeholder:text-[#5a5854] focus:outline-none focus:border-[#c85a32] transition-colors"
                   />
                 </div>
                 <div>
                   <input
                     type="tel"
+                    name="phone"
                     placeholder="Phone Number"
+                    required
+                    value={formData.phone}
+                    onChange={handleChange}
                     className="w-full bg-transparent border-b border-[#5a5854] py-3 text-[#5a5854] placeholder:text-[#5a5854] focus:outline-none focus:border-[#c85a32] transition-colors"
                   />
                 </div>
                 <div className="relative">
-                  <select className="w-full bg-transparent border-b border-[#5a5854] py-3 text-[#1f1e1b] appearance-none focus:outline-none focus:border-[#c85a32] transition-colors">
-                    <option>Service Interested In</option>
-                    <option>Accounting & Bookkeeping</option>
+                  <select
+                    name="service"
+                    required
+                    value={formData.service}
+                    onChange={handleChange}
+                    className="w-full bg-transparent border-b border-[#5a5854] py-3 text-[#1f1e1b] appearance-none focus:outline-none focus:border-[#c85a32] transition-colors"
+                  >
+                    <option value="" disabled>
+                      Service Interested In
+                    </option>
+                    <option>Accounting &amp; Bookkeeping</option>
                     <option>GST Filings</option>
                     <option>Payroll</option>
                     <option>Other</option>
@@ -611,17 +667,68 @@ export default function Home() {
                 </div>
                 <div>
                   <textarea
+                    name="message"
                     placeholder="How can we help you?"
                     rows={3}
+                    required
+                    value={formData.message}
+                    onChange={handleChange}
                     className="w-full bg-transparent border-b border-[#5a5854] py-3 text-[#5a5854] placeholder:text-[#5a5854] focus:outline-none focus:border-[#c85a32] transition-colors resize-none"
-                  ></textarea>
+                  />
                 </div>
+
+                <AnimatePresence mode="wait">
+                  {status === "success" && (
+                    <motion.div
+                      key="success"
+                      initial={{ opacity: 0, y: -8 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0 }}
+                      className="flex items-center gap-2 text-emerald-700 bg-emerald-50 border border-emerald-200 px-4 py-3 text-sm"
+                    >
+                      <CheckCircle2 className="w-4 h-4 shrink-0" />
+                      Message sent! We&apos;ll get back to you shortly.
+                    </motion.div>
+                  )}
+                  {status === "error" && (
+                    <motion.div
+                      key="error"
+                      initial={{ opacity: 0, y: -8 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0 }}
+                      className="flex items-center gap-2 text-red-700 bg-red-50 border border-red-200 px-4 py-3 text-sm"
+                    >
+                      <AlertCircle className="w-4 h-4 shrink-0" />
+                      Something went wrong. Please try again.
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+
                 <div className="pt-4">
                   <button
-                    type="button"
-                    className="w-full bg-[#c85a32] hover:bg-[#a64522] transition-colors text-white font-semibold text-sm uppercase py-4 tracking-wide"
+                    type="submit"
+                    disabled={status === "sending"}
+                    className="w-full bg-[#c85a32] hover:bg-[#a64522] disabled:opacity-60 disabled:cursor-not-allowed transition-colors text-white font-semibold text-sm uppercase py-4 tracking-wide flex items-center justify-center gap-2"
                   >
-                    Send Message
+                    {status === "sending" ? (
+                      <>
+                        <motion.div
+                          animate={{ rotate: 360 }}
+                          transition={{
+                            duration: 0.8,
+                            repeat: Infinity,
+                            ease: "linear",
+                          }}
+                          className="w-4 h-4 border-2 border-white border-t-transparent rounded-full"
+                        />
+                        Sending&hellip;
+                      </>
+                    ) : (
+                      <>
+                        Send Message
+                        <Send className="w-4 h-4" />
+                      </>
+                    )}
                   </button>
                 </div>
               </form>

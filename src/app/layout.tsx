@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import { Crimson_Pro, Source_Sans_3, Public_Sans } from "next/font/google";
 import "./globals.css";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
+import ConditionalShell from "@/components/ConditionalShell";
 
 const crimsonPro = Crimson_Pro({
   subsets: ["latin"],
@@ -38,10 +37,8 @@ export default function RootLayout({
       lang="en"
       className={`${crimsonPro.variable} ${sourceSans.variable} ${publicSans.variable} h-full antialiased text-[#5a5854] bg-[#f9f8f6]`}
     >
-      <body className="font-sans min-h-full flex flex-col pt-[73px]">
-        <Header />
-        {children}
-        <Footer />
+      <body className="font-sans min-h-full flex flex-col">
+        <ConditionalShell>{children}</ConditionalShell>
       </body>
     </html>
   );

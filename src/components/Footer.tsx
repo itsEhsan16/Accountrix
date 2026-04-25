@@ -95,7 +95,7 @@ export default function Footer() {
           <ul className="space-y-4 text-gray-400">
             <li>
               <Link
-                href="/#services"
+                href="/services#accounting"
                 className="hover:text-white transition-colors"
               >
                 Accounting & Bookkeeping
@@ -103,7 +103,7 @@ export default function Footer() {
             </li>
             <li>
               <Link
-                href="/#services"
+                href="/services#gst-filings"
                 className="hover:text-white transition-colors"
               >
                 GST Filings & Compliance
@@ -111,7 +111,7 @@ export default function Footer() {
             </li>
             <li>
               <Link
-                href="/#services"
+                href="/services#financial-reporting"
                 className="hover:text-white transition-colors"
               >
                 Financial Reporting
@@ -119,7 +119,7 @@ export default function Footer() {
             </li>
             <li>
               <Link
-                href="/#services"
+                href="/services#payroll"
                 className="hover:text-white transition-colors"
               >
                 Payroll Management
@@ -127,7 +127,7 @@ export default function Footer() {
             </li>
             <li>
               <Link
-                href="/#services"
+                href="/services#taxes"
                 className="hover:text-white transition-colors"
               >
                 Direct & Indirect Taxes
@@ -135,7 +135,7 @@ export default function Footer() {
             </li>
             <li>
               <Link
-                href="/#services"
+                href="/services#advisory"
                 className="hover:text-white transition-colors"
               >
                 Business Advisory

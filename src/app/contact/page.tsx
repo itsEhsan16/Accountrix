@@ -14,7 +14,6 @@ import {
   AlertCircle,
 } from "lucide-react";
 import Link from "next/link";
-import emailjs from "@emailjs/browser";
 import {
   contactInfo,
   officeHours,
@@ -117,13 +116,15 @@ function FaqItem({
   );
 }
 
+const emptyForm = { name: "", email: "", phone: "", service: "", message: "" };
+
 export default function ContactPage() {
-  const formRef = useRef<HTMLFormElement>(null);
   const formSectionRef = useRef<HTMLDivElement>(null);
   const [status, setStatus] = useState<
     "idle" | "sending" | "success" | "error"
   >("idle");
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
+  const [formData, setFormData] = useState(emptyForm);
 
   const scrollToForm = () => {
     formSectionRef.current?.scrollIntoView({
@@ -132,21 +133,29 @@ export default function ContactPage() {
     });
   };
 
+  const handleChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >,
+  ) => {
+    setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  };
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (!formRef.current) return;
-
     setStatus("sending");
-
     try {
-      await emailjs.sendForm(
-        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
-        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
-        formRef.current,
-        { publicKey: process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY! },
-      );
-      setStatus("success");
-      formRef.current.reset();
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+      if (res.ok) {
+        setStatus("success");
+        setFormData(emptyForm);
+      } else {
+        setStatus("error");
+      }
     } catch {
       setStatus("error");
     }
@@ -376,39 +385,46 @@ export default function ContactPage() {
                 business day.
               </p>
 
-              <form ref={formRef} onSubmit={handleSubmit} className="space-y-6">
+              <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
                   <input
                     type="text"
-                    name="user_name"
+                    name="name"
                     placeholder="Full Name"
                     required
+                    value={formData.name}
+                    onChange={handleChange}
                     className="w-full bg-transparent border-b border-[#5a5854] py-3 text-[#1f1e1b] placeholder:text-[#5a5854] focus:outline-none focus:border-[#c85a32] transition-colors"
                   />
                 </div>
                 <div>
                   <input
                     type="email"
-                    name="user_email"
+                    name="email"
                     placeholder="Email Address"
                     required
+                    value={formData.email}
+                    onChange={handleChange}
                     className="w-full bg-transparent border-b border-[#5a5854] py-3 text-[#1f1e1b] placeholder:text-[#5a5854] focus:outline-none focus:border-[#c85a32] transition-colors"
                   />
                 </div>
                 <div>
                   <input
                     type="tel"
-                    name="user_phone"
+                    name="phone"
                     placeholder="Phone Number"
                     required
+                    value={formData.phone}
+                    onChange={handleChange}
                     className="w-full bg-transparent border-b border-[#5a5854] py-3 text-[#1f1e1b] placeholder:text-[#5a5854] focus:outline-none focus:border-[#c85a32] transition-colors"
                   />
                 </div>
                 <div className="relative">
                   <select
                     name="service"
-                    defaultValue=""
                     required
+                    value={formData.service}
+                    onChange={handleChange}
                     className="w-full bg-transparent border-b border-[#5a5854] py-3 text-[#1f1e1b] appearance-none focus:outline-none focus:border-[#c85a32] transition-colors"
                   >
                     <option value="" disabled>
@@ -428,6 +444,8 @@ export default function ContactPage() {
                     placeholder="How can we help you?"
                     rows={4}
                     required
+                    value={formData.message}
+                    onChange={handleChange}
                     className="w-full bg-transparent border-b border-[#5a5854] py-3 text-[#1f1e1b] placeholder:text-[#5a5854] focus:outline-none focus:border-[#c85a32] transition-colors resize-none"
                   />
                 </div>
