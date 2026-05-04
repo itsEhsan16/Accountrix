@@ -326,31 +326,37 @@ export default function Home() {
                   t: "Accounting & Bookkeeping",
                   d: "Meticulous record-keeping and ledger management ensuring your financial foundation is always accurate and up-to-date.",
                   icon: BookOpen,
+                  href: "/services#accounting",
                 },
                 {
                   t: "GST Filings & Compliance",
                   d: "Seamless handling of GST registrations, returns, and advisory to keep you perfectly aligned with statutory requirements.",
                   icon: FileText,
+                  href: "/services#gst-filings",
                 },
                 {
                   t: "Financial Reporting",
                   d: "Comprehensive statements, cash flow analysis, and balance sheets offering crystal clear visibility into your financial health.",
                   icon: BarChart2,
+                  href: "/services#financial-reporting",
                 },
                 {
                   t: "Payroll Management",
                   d: "End-to-end payroll processing, ensuring your team is paid accurately and on time while managing all related tax deductions.",
                   icon: Users,
+                  href: "/services#payroll",
                 },
                 {
                   t: "Direct & Indirect Taxes",
                   d: "Expert planning and filing for Income Tax, TDS, and other duties to minimize liabilities legally and effectively.",
                   icon: CheckCircle2,
+                  href: "/services#taxes",
                 },
                 {
                   t: "Business Advisory",
                   d: "Strategic insights, risk management, and structuring advice to propel your business towards sustainable, profitable growth.",
                   icon: Info,
+                  href: "/services#advisory",
                 },
               ].map((s, i) => (
                 <motion.div
@@ -370,7 +376,7 @@ export default function Home() {
                   </h3>
                   <p className="text-[#5a5854] leading-relaxed mb-8">{s.d}</p>
                   <a
-                    href="#"
+                    href={s.href}
                     className="inline-flex items-center gap-2 font-bold text-[#c85a32] text-xs uppercase tracking-widest"
                   >
                     Learn More{" "}
@@ -585,15 +591,6 @@ export default function Home() {
                       Registered Address
                     </p>
                     <p className="font-[family-name:var(--font-crimson-pro)] text-[#1f1e1b] text-xl leading-relaxed">
-                      <span className="font-semibold text-base">
-                        Office Address:
-                      </span>
-                      <br />
-                      404, Shree Rama Apartments, Narayanguda
-                      <br />
-                      Hyderabad, Telangana 500027
-                    </p>
-                    <p className="font-[family-name:var(--font-crimson-pro)] text-[#1f1e1b] text-xl leading-relaxed mt-4">
                       <span className="font-semibold text-base">
                         Branch Office:
                       </span>

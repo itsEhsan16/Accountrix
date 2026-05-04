@@ -1,7 +1,8 @@
 export const contactInfo = {
   email: "info@accountrixsolutions.in",
   phone: "+91 7276535406",
-  address: "Gadchandur Road, Rajura, Chandrapur, Maharashtra – 442905",
+  address:
+    "404, Shree Rama Apartments, Narayanguda, Hyderabad, Telangana 500027",
 };
 
 export const officeHours = [
